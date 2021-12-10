@@ -17,6 +17,7 @@ function listTasks() {
     let element = document.createElement('li');
     element.innerText = task;
     list.appendChild(element);
+    element.addEventListener('click', taskSelector);
   }
 }
 
@@ -25,6 +26,16 @@ function addTask() {
 
   tasks.push(task);
   localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function taskSelector(event) {
+  let selectedTask = document.querySelector('.selected');
+
+  if (selectedTask != null) {
+    selectedTask.classList.remove('selected');
+  }
+
+  event.target.classList.add('selected');
 }
 
 window.onload = function () {
