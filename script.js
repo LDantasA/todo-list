@@ -18,6 +18,7 @@ function listTasks() {
     element.innerText = task;
     list.appendChild(element);
     element.addEventListener('click', taskSelector);
+    element.addEventListener('dblclick', taskComplete);
   }
 }
 
@@ -36,6 +37,11 @@ function taskSelector(event) {
   }
 
   event.target.classList.add('selected');
+}
+
+function taskComplete(event) {
+  event.target.classList.remove('selected');
+  event.target.classList.toggle('completed');
 }
 
 window.onload = function () {
