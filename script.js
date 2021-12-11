@@ -1,21 +1,32 @@
-let tasks;
+let tasks = [];
+let selectedTask;
 
 function initialize() {
   const storage = localStorage.getItem('tasks');
 
   if (storage != null) {
     /** Source: https://app.betrybe.com/course/fundamentals/javascript-dom-eventos-e-web-storage/javascript-web-storage/b332393f-7548-4075-83e3-f632735efb95/conteudos/a69f590a-b7be-4821-959e-75204430d057/local-e-session-storage/6da4a8cf-1a42-47c9-b271-a4df5f2ba5a3?use_case=side_bar */
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  } else {
-    tasks = [];
+    let savedTasks = JSON.parse(localStorage.getItem('tasks'));
+
+    for (let i in savedTasks) {
+      let task = {
+        task: savedTasks[i],
+        completed: false,
+      };
+      tasks.push(task);
+    }
   }
 }
 
 function listTasks() {
   const list = document.getElementById('lista-tarefas');
-  for (let task of tasks) {
+
+  list.innerHTML = null;
+
+  for (let i in tasks) {
     let element = document.createElement('li');
-    element.innerText = task;
+
+    element.innerText = tasks[i].task;
     list.appendChild(element);
     element.addEventListener('click', taskSelector);
     element.addEventListener('dblclick', taskComplete);
@@ -28,20 +39,16 @@ function addTask(event) {
   const list = document.getElementById('lista-tarefas');
   const task = document.getElementById('texto-tarefa');
 
-  tasks.push(task.value);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  tasks.push({
+    task: task.value,
+    completed: false,
+  });
   task.value = '';
-  reinitializeList();
-}
-
-function reinitializeList() {
-  const list = document.getElementById('lista-tarefas');
-  list.innerHTML = null;
   listTasks();
 }
 
 function taskSelector(event) {
-  let selectedTask = document.querySelector('.selected');
+  selectedTask = document.querySelector('.selected');
 
   if (selectedTask != null) {
     selectedTask.classList.remove('selected');
@@ -53,16 +60,36 @@ function taskSelector(event) {
 function taskComplete(event) {
   event.target.classList.remove('selected');
   event.target.classList.toggle('completed');
+
+  let items = document.getElementsByTagName('li');
+
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].classList.contains('completed')) {
+      tasks[i].completed = true;
+    } else {
+      tasks[i].completed = false;
+    }
+  }
 }
 
 function removeAll() {
   tasks = [];
-  reinitializeList();
+  listTasks();
+}
+
+function removeCompletes() {
+  for (let i = tasks.length - 1; i >= 0; i--) {
+    if (tasks[i].completed === true) {
+      tasks.splice(i, 1);
+    }
+  }
+  listTasks();
 }
 
 window.onload = function () {
   initialize();
   listTasks();
   document.querySelector('form').addEventListener('submit', addTask);
-  document.getElementById('apaga-tudo').addEventListener('click', removeAll);
+  document.querySelector('#apaga-tudo').addEventListener('click', removeAll);
+  document.querySelector('#remover-finalizados').addEventListener('click', removeCompletes);
 };
