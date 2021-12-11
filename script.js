@@ -22,11 +22,22 @@ function listTasks() {
   }
 }
 
-function addTask() {
-  let task = document.getElementById('texto-tarefa').value;
+function addTask(event) {
+  event.preventDefault();
 
-  tasks.push(task);
+  const list = document.getElementById('lista-tarefas');
+  const task = document.getElementById('texto-tarefa');
+
+  tasks.push(task.value);
   localStorage.setItem('tasks', JSON.stringify(tasks));
+  task.value = '';
+  reinitializeList();
+}
+
+function reinitializeList() {
+  const list = document.getElementById('lista-tarefas');
+  list.innerHTML = null;
+  listTasks();
 }
 
 function taskSelector(event) {
@@ -44,8 +55,14 @@ function taskComplete(event) {
   event.target.classList.toggle('completed');
 }
 
+function removeAll() {
+  tasks = [];
+  reinitializeList();
+}
+
 window.onload = function () {
   initialize();
   listTasks();
-  document.getElementById('criar-tarefa').addEventListener('click', addTask);
+  document.querySelector('form').addEventListener('submit', addTask);
+  document.getElementById('apaga-tudo').addEventListener('click', removeAll);
 };
