@@ -2,20 +2,11 @@ let tasks = [];
 let selectedTask;
 
 function initialize() {
-  const storage = localStorage.getItem('tasks');
+  /** Source: https://app.betrybe.com/course/fundamentals/javascript-dom-eventos-e-web-storage/javascript-web-storage/b332393f-7548-4075-83e3-f632735efb95/conteudos/a69f590a-b7be-4821-959e-75204430d057/local-e-session-storage/6da4a8cf-1a42-47c9-b271-a4df5f2ba5a3?use_case=side_bar */
+  const storage = JSON.parse(localStorage.getItem('tasks'));
 
   if (storage != null) {
-    /** Source: https://app.betrybe.com/course/fundamentals/javascript-dom-eventos-e-web-storage/javascript-web-storage/b332393f-7548-4075-83e3-f632735efb95/conteudos/a69f590a-b7be-4821-959e-75204430d057/local-e-session-storage/6da4a8cf-1a42-47c9-b271-a4df5f2ba5a3?use_case=side_bar */
-    let savedTasks = JSON.parse(localStorage.getItem('tasks'));
-    let completes = JSON.parse(localStorage.getItem('completes'));
-
-    for (let i in savedTasks) {
-      let task = {
-        task: savedTasks[i],
-        completed: completes[i],
-      };
-      tasks.push(task);
-    }
+    tasks = storage;
   }
 }
 
@@ -90,16 +81,7 @@ function removeCompletes() {
 }
 
 function saveTasks() {
-  let savedTasks = [];
-  let completes = [];
-
-  for (let i in tasks) {
-    savedTasks.push(tasks[i].task);
-    completes.push(tasks[i].completed);
-  }
-
-  localStorage.setItem('tasks', JSON.stringify(savedTasks));
-  localStorage.setItem('completes', JSON.stringify(completes));
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 window.onload = function () {
