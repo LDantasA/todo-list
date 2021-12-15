@@ -11,6 +11,7 @@ function initialize() {
 }
 
 function listTasks() {
+  selectedTask = null;
   const list = document.getElementById('lista-tarefas');
 
   list.innerHTML = null;
@@ -42,16 +43,16 @@ function addTask(event) {
 }
 
 function taskSelector(event) {
-  selectedTask = document.querySelector('.selected');
-
   if (selectedTask != null) {
     selectedTask.classList.remove('selected');
   }
 
+  selectedTask = event.target;
   event.target.classList.add('selected');
 }
 
 function taskComplete(event) {
+  selectedTask = null;
   event.target.classList.remove('selected');
   event.target.classList.toggle('completed');
 
@@ -84,6 +85,41 @@ function saveTasks() {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
+function findIndex(task) {
+  for (var index = -1; task != null; index++) {
+    task = task.previousSibling;
+  }
+  return index;
+}
+
+function moveUp() {
+  let index = findIndex(selectedTask);
+  let taskBackup = tasks[index];
+
+  if (index > 0 && selectedTask != null) {
+    tasks[index] = tasks[index - 1];
+    tasks[index - 1] = taskBackup;
+    listTasks();
+
+    selectedTask = document.getElementsByTagName('li')[index - 1];
+    selectedTask.classList.add('selected');
+  }
+}
+
+function moveDown() {
+  let index = findIndex(selectedTask);
+  let taskBackup = tasks[index];
+
+  if (index < tasks.length - 1 && selectedTask != null) {
+    tasks[index] = tasks[index + 1];
+    tasks[index + 1] = taskBackup;
+    listTasks();
+
+    selectedTask = document.getElementsByTagName('li')[index + 1];
+    selectedTask.classList.add('selected');
+  }
+}
+
 window.onload = function () {
   initialize();
   listTasks();
@@ -91,4 +127,6 @@ window.onload = function () {
   document.querySelector('#apaga-tudo').addEventListener('click', removeAll);
   document.querySelector('#remover-finalizados').addEventListener('click', removeCompletes);
   document.querySelector('#salvar-tarefas').addEventListener('click', saveTasks);
+  document.querySelector('#mover-cima').addEventListener('click', moveUp);
+  document.querySelector('#mover-baixo').addEventListener('click', moveDown);
 };
