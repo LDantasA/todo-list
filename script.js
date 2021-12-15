@@ -120,6 +120,16 @@ function moveDown() {
   }
 }
 
+function removeTask() {
+  if (selectedTask != null) {
+    let index = findIndex(selectedTask);
+
+    tasks.splice(index, 1);
+    listTasks();
+    selectedTask = null;
+  }
+}
+
 window.onload = function () {
   initialize();
   listTasks();
@@ -129,4 +139,5 @@ window.onload = function () {
   document.querySelector('#salvar-tarefas').addEventListener('click', saveTasks);
   document.querySelector('#mover-cima').addEventListener('click', moveUp);
   document.querySelector('#mover-baixo').addEventListener('click', moveDown);
+  document.querySelector('#remover-selecionado').addEventListener('click', removeTask);
 };
