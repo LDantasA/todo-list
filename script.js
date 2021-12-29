@@ -1,4 +1,6 @@
 let tasks = [];
+// let pages = [];
+let currentLine = 1;
 let selectedTask;
 
 function initialize() {
@@ -10,23 +12,48 @@ function initialize() {
   }
 }
 
+// function generatePages(linesByPage) {
+//   pages = [];
+//   const list = document.getElementById('lista-tarefas');
+//   let currentLine = 0;
+//   let currentPage = 1;
+
+//   while (currentLine <= list.children.length) {
+//     currentLine += 1;
+//     if (currentLine === linesByPage * currentPage) {
+//       pages.push({
+//         page: currentPage,
+//         first: currentLine + 1,
+//       });
+//       currentPage += 1;
+//     }
+//   }
+//   console.log(pages);
+// }
+
 function listTasks() {
   selectedTask = null;
   const list = document.getElementById('lista-tarefas');
+  let elementLine;
 
   list.innerHTML = null;
 
   for (let i in tasks) {
+    elementLine = list.children.length + 1;
     let element = document.createElement('li');
 
     element.innerText = tasks[i].task;
-    if (tasks[i].completed === true) {
+    element.id = elementLine;
+    if (tasks[i].completed) {
       element.classList.add('completed');
     }
     list.appendChild(element);
     element.addEventListener('click', taskSelector);
     element.addEventListener('dblclick', taskComplete);
   }
+  let element = document.createElement('br');
+  element.id = elementLine + 1;
+  list.appendChild(element);
 }
 
 function addTask(event) {
@@ -130,6 +157,22 @@ function removeTask() {
   }
 }
 
+function scrollList(event) {
+  event.preventDefault();
+  let numberOfLines = document.getElementById('lista-tarefas').children.length;
+  let maxLine = numberOfLines - 13;
+
+  var y = event.deltaY;
+  if (y > 0) {
+    currentLine += 1;
+  } else if (y < 0 && currentLine > maxLine) {
+    currentLine = maxLine;
+  } else if (y < 0 && currentLine > 1) {
+    currentLine -= 1;
+  }
+  window.location.href = '#' + currentLine;
+}
+
 window.onload = function () {
   initialize();
   listTasks();
@@ -140,4 +183,5 @@ window.onload = function () {
   document.querySelector('#mover-cima').addEventListener('click', moveUp);
   document.querySelector('#mover-baixo').addEventListener('click', moveDown);
   document.querySelector('#remover-selecionado').addEventListener('click', removeTask);
+  document.querySelector('#lista-tarefas').addEventListener('wheel', scrollList);
 };

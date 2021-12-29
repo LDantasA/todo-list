@@ -1,4 +1,58 @@
-body {}
+body {
+  background-color: #9BD2C4;
+  height: 670px;
+  min-width: 500px;
+}
+
+header,
+form {
+  text-align: center;
+}
+
+p {
+  font-size: 14px;
+  min-width: 342.5px;
+}
+
+.container {
+  background-image: url(https://static.vecteezy.com/system/resources/previews/002/399/733/original/spiral-notebook-on-green-background-vector.jpg);
+  background-size: 600px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 500px;
+  height: 670px;
+  padding: 0px 5px 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main {
+  font-family: 'Amatic SC', cursive;
+  font-size: 25px;
+}
+
+form {
+  margin-top: 45px;
+}
+
+input {
+  width: 150px;
+}
+
+#lista-tarefas {
+  word-wrap: break-word;
+  max-width: 500px;
+  margin: 5px auto 5px 90px;
+  line-height: 29px;
+  width: fit-content;
+  height: 380px;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+li {
+  width: 270px;
+}
 
 .selected {
   background-color: rgb(128, 128, 128);
@@ -8,7 +62,20 @@ body {}
   text-decoration: line-through;
 }
 
+.controles {
+  margin-top: 60px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #salvar-tarefas {
   width: 236.8px;
-  margin-bottom: 3px;
+  margin-bottom: 3px
+}
+
+footer {
+  position: fixed;
+  bottom: 3px;
+  right: 5px
 }

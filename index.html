@@ -4,31 +4,37 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap");
+    </style>
     <title>Lista de Tarefas</title>
   </head>
   <body>
-    <header>
-      <h1>Minha Lista de Tarefas</h1>
-      <p id="funcionamento">Clique duas vezes em um item para marcá-lo como completo</p>
-    </header>
-    <main>
-      <form>
-        <input id="texto-tarefa" />
-        <button id="criar-tarefa">Criar tarefa</button>
-      </form>
-
-      <ol id="lista-tarefas"></ol>
-      <section class="controles">
-        <button id="salvar-tarefas">Salvar</button>
-        <button id="mover-cima">▲</button>
+    <div class="container">
+      <header>
+        <h1>Minha Lista de Tarefas</h1>
+        <p id="funcionamento">Clique duas vezes em um item para marcá-lo como completo</p>
+      </header>
+      <main>
+        <form>
+          <label>Tarefa:</label>
+          <input id="texto-tarefa" />
+          <button id="criar-tarefa">Criar tarefa</button>
+        </form>
+        <ol id="lista-tarefas"></ol>
+      </main>
+      <div class="controles">
+        <button class="controle" id="salvar-tarefas">Salvar</button>
+        <button class="controle" id="mover-cima">▲</button>
         <br />
-        <button id="apaga-tudo">Apagar tudo</button>
-        <button id="remover-finalizados">Apagar itens riscados</button>
-        <button id="mover-baixo">▼</button>
-        <button id="remover-selecionado">Apagar</button>
-      </section>
-    </main>
+        <button class="controle" id="apaga-tudo">Apagar tudo</button>
+        <button class="controle" id="remover-finalizados">Apagar itens riscados</button>
+        <button class="controle" id="mover-baixo">▼</button>
+        <button class="controle" id="remover-selecionado">Apagar</button>
+      </div>
+    </div>
+    <footer><a>Feito por Leonardo Dantas🦜</a></footer>
   </body>
 </html>
