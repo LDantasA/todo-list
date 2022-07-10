@@ -1,16 +1,16 @@
-# 🚧 README em construção 🚧
+# Todo List
 
-<!-- Olá, Tryber!
+## Uma simples lista de tarefas desenvolvida com HTML e JavaScript puro.
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+### [Clique aqui](https://tasks.ldantasa.com/) para visualizar o projeto funcionando :)
+---
+### Instruções:
+- Digite uma tarefa na caixa de texto e clique em "Criar tarefa" para adicionar uma tarefa à lista.
+- Clique duas vezes em uma tarefa para risca-la da lista. Você pode remover o risco clicando duas vezes na mesma tarefa :).
 
-É essencial que você preencha esse documento por conta própria, ok?
-
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
-
--->
+## Ferramentas utilizadas
+- HTML
+- JavaScript
+- CSS
+---
+ Esse projeto foi desenvolvido em 2021 como parte do curso da Trybe para fins de aprendizagem. Todo o código disponível nesse repositório é de minha autoria.
