@@ -13,4 +13,4 @@
 - JavaScript
 - CSS
 ---
- Esse projeto foi desenvolvido em 2021 como parte do curso da Trybe para fins de aprendizagem. Todo o código disponível nesse repositório é de minha autoria.
+ Esse projeto foi desenvolvido em 2021 como parte do curso da [Trybe](https://www.betrybe.com/formacao-desenvolvimento-web) para fins de aprendizagem. Todo o código disponível nesse repositório é de minha autoria.
